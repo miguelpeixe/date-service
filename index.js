@@ -36,6 +36,11 @@ service.get("/date", function(req, res) {
   if (req.query.tz) {
     date.tz(req.query.tz);
   }
+  res.set({
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    Pragma: "no-cache",
+    Expires: 0
+  });
   res.send({ date: date.format() });
 });
 
